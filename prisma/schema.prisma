@@ -19,24 +19,21 @@ model User {
 
 }
 
-model Orfanato {
+model Orphanate {
   id               Int       @id @default(autoincrement())
-  name             String
-  latitude         Decimal   @db.Decimal(8, 6)
-  longitude        Decimal   @db.Decimal(9, 6)
+  name             String    @unique
+  latitude         Decimal?  @db.Decimal(8, 6)
+  longitude        Decimal?  @db.Decimal(9, 6)
   about            String
   opening_time     DateTime?
   open_on_weekends Boolean
   whatsapp         String
-  images           Image[]
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
-  imageId          Int
 }
 
 model Image {
-  id         Int       @id @default(autoincrement())
-  path       String
-  Orfanato   Orfanato? @relation(fields: [orfanatoId], references: [id])
-  orfanatoId Int?
+  id          Int    @id @default(autoincrement())
+  orphanateID Int
+  path        String
 }
