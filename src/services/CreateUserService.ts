@@ -1,4 +1,5 @@
 import { UsersRepository } from "../repositories/UsersRepository";
+import { hash, genSalt } from "bcryptjs";
 
 interface ICreateUserRequest {
 	name: string;
@@ -20,10 +21,12 @@ export class CreateUserService {
 			throw new Error("User already exists.");
 		}
 
+		const hashedPassword = await hash(password, await genSalt());
+
 		const user = await usersRepository.create({
 			name,
 			email,
-			password,
+			password: hashedPassword,
 		});
 
 		return user;

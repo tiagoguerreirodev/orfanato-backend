@@ -8,6 +8,6 @@ export class GetAllApprovedOrphanagesController {
 
 		const approvedOrphanages = await getAllApprovedOrphanagesService.execute();
 
-		return response.send({ approvedOrphanages });
+		return response.send(approvedOrphanages);
 	}
 }

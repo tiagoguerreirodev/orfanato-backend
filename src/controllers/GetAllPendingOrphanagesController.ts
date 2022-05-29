@@ -7,6 +7,6 @@ export class GetAllPendingOrphanagesController {
 
 		const pendingOrphanages = await getAllPendingOrphanagesService.execute();
 
-		return response.send({ pendingOrphanages });
+		return response.send(pendingOrphanages);
 	}
 }

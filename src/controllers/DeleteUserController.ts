@@ -7,8 +7,8 @@ export class DeleteUserController {
 
 		const deleteUserService = new DeleteUserService();
 
-		await deleteUserService.execute(id);
+		const deletedUser = await deleteUserService.execute(id);
 
-		return response.send();
+		return response.send(deletedUser);
 	}
 }

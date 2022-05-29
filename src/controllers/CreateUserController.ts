@@ -7,8 +7,12 @@ export class CreateUserController {
 
 		const createUserService = new CreateUserService();
 
-		await createUserService.execute({ name, email, password });
+		const createdUser = await createUserService.execute({
+			name,
+			email,
+			password,
+		});
 
-		return response.send();
+		return response.send(createdUser);
 	}
 }

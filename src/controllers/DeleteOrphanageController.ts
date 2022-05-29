@@ -9,6 +9,6 @@ export class DeleteOrphanageController {
 
 		const deletedOrphanage = await deleteOrphanageService.execute(id);
 
-		return response.status(204).send();
+		return response.status(204).send(deletedOrphanage);
 	}
 }
