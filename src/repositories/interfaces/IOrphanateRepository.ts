@@ -1,17 +1,23 @@
-import { Orphanate, Prisma } from "@prisma/client";
+import { Orphanage, Prisma } from "@prisma/client";
 
-export interface ICreateOrphanateDTO {
+export interface ICreateOrphanageDTO {
 	name: string;
-	latitude?: Prisma.Decimal;
-	longitude?: Prisma.Decimal;
+	latitude: number;
+	longitude: number;
 	about: string;
-	opening_time?: string;
+	approved: boolean;
+	opening_hours: string;
+	closing_hours: string;
 	open_on_weekends: boolean;
 	whatsapp: string;
 }
 
-export interface IOrphanateRepository {
-	create(data: ICreateOrphanateDTO): Promise<Orphanate>;
-	findByName(name: string): Promise<Orphanate | null>;
-	delete(name: string): Promise<Orphanate>;
+export interface IOrphanageRepository {
+	create(data: ICreateOrphanageDTO): Promise<Orphanage>;
+	findByName(name: string): Promise<Orphanage | null>;
+	findByID(id: number): Promise<Orphanage | null>;
+	getAllApprovedOrphanages(): Promise<Orphanage[] | null>;
+	getAllPendingOrphanages(): Promise<Orphanage[] | null>;
+	approveOrphanage(id: number): Promise<Orphanage>;
+	delete(name: string): Promise<Orphanage>;
 }

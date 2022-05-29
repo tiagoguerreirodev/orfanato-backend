@@ -3,11 +3,11 @@ import { UsersRepository } from "../repositories/UsersRepository";
 interface ICreateUserRequest {
 	name: string;
 	email: string;
-	admin?: boolean;
+	password: string;
 }
 
 export class CreateUserService {
-	async execute({ name, email, admin }: ICreateUserRequest) {
+	async execute({ name, email, password }: ICreateUserRequest) {
 		const usersRepository = new UsersRepository();
 
 		if (!email) {
@@ -23,7 +23,7 @@ export class CreateUserService {
 		const user = await usersRepository.create({
 			name,
 			email,
-			admin,
+			password,
 		});
 
 		return user;

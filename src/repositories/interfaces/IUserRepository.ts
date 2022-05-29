@@ -3,7 +3,7 @@ import { User } from "@prisma/client";
 export interface ICreateUserDTO {
 	name: string;
 	email: string;
-	admin?: boolean;
+	password: string;
 }
 
 export interface IUsersRepository {
