@@ -30,9 +30,9 @@ export class OrphanageRepository implements IOrphanageRepository {
 		return orphanageFound;
 	}
 
-	async delete(name: string): Promise<Orphanage> {
+	async delete(id: number): Promise<Orphanage> {
 		const deletedOrphanage = await prisma.orphanage.delete({
-			where: { name: name },
+			where: { id: id },
 		});
 
 		return deletedOrphanage;

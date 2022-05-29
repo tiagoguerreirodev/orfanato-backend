@@ -12,9 +12,9 @@ export class UsersRepository implements IUsersRepository {
 		return createdUser;
 	}
 
-	async delete(email: string): Promise<User> {
+	async delete(id: number): Promise<User> {
 		const deletedUser = await prisma.user.delete({
-			where: { email: email },
+			where: { id: id },
 		});
 
 		return deletedUser;
@@ -23,6 +23,14 @@ export class UsersRepository implements IUsersRepository {
 	async findByEmail(email: string): Promise<User | null> {
 		const userFound = await prisma.user.findUnique({
 			where: { email: email },
+		});
+
+		return userFound;
+	}
+
+	async findByID(id: number): Promise<User | null> {
+		const userFound = await prisma.user.findUnique({
+			where: { id: id },
 		});
 
 		return userFound;

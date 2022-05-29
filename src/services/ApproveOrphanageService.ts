@@ -10,6 +10,10 @@ export class ApproveOrphanageService {
 
 		const orphanageAlreadyApproved = await orphanageRepository
 			.findByID(id)
+			.then((obj) => {
+				if (!obj) throw new Error("Orphanage does not exist.");
+				return obj;
+			})
 			.then((obj) => obj?.approved);
 
 		if (orphanageAlreadyApproved) {

@@ -1,20 +1,20 @@
 import { UsersRepository } from "../repositories/UsersRepository";
 
 export class DeleteUserService {
-	async execute(email: string) {
+	async execute(id: number) {
 		const usersRepository = new UsersRepository();
 
-		if (!email) {
-			throw new Error("Incorrect email.");
+		if (!id) {
+			throw new Error("ID not specified. Cannot locate user.");
 		}
 
-		const userExists = await usersRepository.findByEmail(email);
+		const userExists = await usersRepository.findByID(id);
 
 		if (!userExists) {
 			throw new Error("User does not exist.");
 		}
 
-		const deletedUser = await usersRepository.delete(email);
+		const deletedUser = await usersRepository.delete(id);
 
 		return deletedUser;
 	}

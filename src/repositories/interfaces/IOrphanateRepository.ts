@@ -19,5 +19,5 @@ export interface IOrphanageRepository {
 	getAllApprovedOrphanages(): Promise<Orphanage[] | null>;
 	getAllPendingOrphanages(): Promise<Orphanage[] | null>;
 	approveOrphanage(id: number): Promise<Orphanage>;
-	delete(name: string): Promise<Orphanage>;
+	delete(id: number): Promise<Orphanage>;
 }

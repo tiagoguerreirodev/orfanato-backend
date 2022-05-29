@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { ApproveOrphanageController } from "./controllers/ApproveOrphanageController";
 
+import { ApproveOrphanageController } from "./controllers/ApproveOrphanageController";
 import { CreateOrphanageController } from "./controllers/CreateOrphanageController";
 import { CreateUserController } from "./controllers/CreateUserController";
+import { DeleteOrphanageController } from "./controllers/DeleteOrphanageController";
 import { DeleteUserController } from "./controllers/DeleteUserController";
 import { GetAllApprovedOrphanagesController } from "./controllers/GetAllApprovedOrphanagesController";
-import { GetAllPendingOrphanagesController } from "./controllers/GetAllApprovedOrphanagesController copy";
+import { GetAllPendingOrphanagesController } from "./controllers/GetAllPendingOrphanagesController";
 
 const router = Router();
 
-// router.post("/users",new CreateUserController().handle);
+router.post("/user", new CreateUserController().handle); //TODO: somente usuários logados.
 router.post("/orphanage", new CreateOrphanageController().handle); //TODO: somente usuários logados.
 
 router.get(
@@ -21,8 +22,9 @@ router.get(
 	new GetAllPendingOrphanagesController().handle
 ); //TODO: somente usuários logados.
 
-router.put("/approve/:id", new ApproveOrphanageController().handle);
+router.put("/orphanage/:id", new ApproveOrphanageController().handle); //TODO: somente usuários logados.
 
-router.delete("/users", new DeleteUserController().handle); //TODO: somente usuários logados.
+router.delete("/user/:id", new DeleteUserController().handle); //TODO: somente usuários logados.
+router.delete("/orphanage/:id", new DeleteOrphanageController().handle); //TODO: somente usuários logados.
 
 export { router };
