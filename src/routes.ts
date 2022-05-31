@@ -1,4 +1,6 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
+import multer from "multer";
+import { multerConfig } from "./config/multer";
 
 import { ApproveOrphanageController } from "./controllers/ApproveOrphanageController";
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
@@ -17,6 +19,11 @@ router.post(
 	"/orphanage",
 	ensureAuthentication,
 	new CreateOrphanageController().handle
+);
+router.put(
+	"/image/:orphanageID",
+	// ensureAuthentication,
+	multer(multerConfig).single("file")
 );
 router.post("/login", new AuthenticateUserController().handle);
 

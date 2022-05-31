@@ -29,6 +29,8 @@ export class CreateOrphanageController {
 			whatsapp,
 		});
 
-		return response.status(201).send(createdOrphanage);
+		return response
+			.status(201)
+			.json({ orphanage: createdOrphanage, file: request.file });
 	}
 }

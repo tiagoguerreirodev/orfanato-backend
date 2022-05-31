@@ -1,4 +1,4 @@
-import { Orphanage, Prisma } from "@prisma/client";
+import { Orphanage } from "@prisma/client";
 
 export interface ICreateOrphanageDTO {
 	name: string;
@@ -14,6 +14,7 @@ export interface ICreateOrphanageDTO {
 
 export interface IOrphanageRepository {
 	create(data: ICreateOrphanageDTO): Promise<Orphanage>;
+	updateImage(imageId: number, orphanageID: number): Promise<Orphanage>;
 	findByName(name: string): Promise<Orphanage | null>;
 	findByID(id: number): Promise<Orphanage | null>;
 	getAllApprovedOrphanages(): Promise<Orphanage[] | null>;

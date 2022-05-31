@@ -26,18 +26,19 @@ model Orphanage {
   longitude        Decimal  @unique @db.Decimal(9, 6)
   about            String
   approved         Boolean  @default(false)
-  opening_hours    String // TODO: Só as horas e os minutos
-  closing_hours    String // TODO: Só as horas e os minutos
+  opening_hours    String
+  closing_hours    String
   open_on_weekends Boolean
   whatsapp         String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  Image            Image[]
+  image            Image?   @relation(fields: [imageId], references: [id])
+  imageId          Int?
 }
 
 model Image {
-  id          Int       @id @default(autoincrement())
-  path        String
-  orphanageId Int
-  orphanage   Orphanage @relation(fields: [orphanageId], references: [id])
+  id        Int         @id @default(autoincrement())
+  name      String
+  path      String
+  Orphanage Orphanage[]
 }

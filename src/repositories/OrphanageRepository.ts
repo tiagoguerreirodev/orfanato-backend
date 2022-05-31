@@ -68,4 +68,17 @@ export class OrphanageRepository implements IOrphanageRepository {
 		});
 		return approvedOrphanage;
 	}
+
+	async updateImage(imageId: number, orphanageID: number): Promise<Orphanage> {
+		const updatedImage = await prisma.orphanage.update({
+			where: {
+				id: orphanageID,
+			},
+			data: {
+				imageId: imageId,
+			},
+		});
+
+		return updatedImage;
+	}
 }
