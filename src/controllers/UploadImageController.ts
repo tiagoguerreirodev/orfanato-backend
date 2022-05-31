@@ -4,7 +4,7 @@ import { UploadImageService } from "../services/UploadImageService";
 export class UploadImageController {
 	async handle(request: Request, response: Response) {
 		const orphanageID = parseInt(request.params.orphanageID);
-		const { filename, path } = request.body;
+		const { filename, path } = request.file;
 
 		const uploadImageService = new UploadImageService();
 
