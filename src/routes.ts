@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import multer from "multer";
 import { multerConfig } from "./config/multer";
 
@@ -10,47 +10,52 @@ import { DeleteOrphanageController } from "./controllers/DeleteOrphanageControll
 import { DeleteUserController } from "./controllers/DeleteUserController";
 import { GetAllApprovedOrphanagesController } from "./controllers/GetAllApprovedOrphanagesController";
 import { GetAllPendingOrphanagesController } from "./controllers/GetAllPendingOrphanagesController";
+import { UploadImageController } from "./controllers/UploadImageController";
 import { ensureAuthentication } from "./middlewares/ensureAuthentication";
 
 export const router = Router();
 
-router.post("/user", ensureAuthentication, new CreateUserController().handle);
+router.post(
+	"/user", //ensureAuthentication,
+	new CreateUserController().handle
+);
 router.post(
 	"/orphanage",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new CreateOrphanageController().handle
 );
 router.put(
 	"/image/:orphanageID",
-	ensureAuthentication,
-	multer(multerConfig).single("file")
+	//ensureAuthentication,
+	multer(multerConfig).single("file"),
+	new UploadImageController().handle
 );
 router.post("/login", new AuthenticateUserController().handle);
 
 router.get(
 	"/orphanage/approved",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new GetAllApprovedOrphanagesController().handle
 );
 router.get(
 	"/orphanage/pending",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new GetAllPendingOrphanagesController().handle
 );
 
 router.put(
 	"/orphanage/:id",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new ApproveOrphanageController().handle
 );
 
 router.delete(
 	"/user/:id",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new DeleteUserController().handle
 );
 router.delete(
 	"/orphanage/:id",
-	ensureAuthentication,
+	//ensureAuthentication,
 	new DeleteOrphanageController().handle
 );
