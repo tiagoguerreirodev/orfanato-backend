@@ -10,46 +10,40 @@ import { GetAllApprovedOrphanagesController } from "./controllers/GetAllApproved
 import { GetAllPendingOrphanagesController } from "./controllers/GetAllPendingOrphanagesController";
 import { ensureAuthentication } from "./middlewares/ensureAuthentication";
 
-const router = Router();
+export const router = Router();
 
-router.post("/user", ensureAuthentication, new CreateUserController().handle); //TODO: somente usuários logados.
+router.post("/user", ensureAuthentication, new CreateUserController().handle);
 router.post(
 	"/orphanage",
 	ensureAuthentication,
 	new CreateOrphanageController().handle
-); //TODO: somente usuários logados.
-router.post(
-	"/login",
-	ensureAuthentication,
-	new AuthenticateUserController().handle
-); //TODO: somente usuários logados.
+);
+router.post("/login", new AuthenticateUserController().handle);
 
 router.get(
 	"/orphanage/approved",
 	ensureAuthentication,
 	new GetAllApprovedOrphanagesController().handle
-); //TODO: somente usuários logados.
+);
 router.get(
 	"/orphanage/pending",
 	ensureAuthentication,
 	new GetAllPendingOrphanagesController().handle
-); //TODO: somente usuários logados.
+);
 
 router.put(
 	"/orphanage/:id",
 	ensureAuthentication,
 	new ApproveOrphanageController().handle
-); //TODO: somente usuários logados.
+);
 
 router.delete(
 	"/user/:id",
 	ensureAuthentication,
 	new DeleteUserController().handle
-); //TODO: somente usuários logados.
+);
 router.delete(
 	"/orphanage/:id",
 	ensureAuthentication,
 	new DeleteOrphanageController().handle
-); //TODO: somente usuários logados.
-
-export { router };
+);
