@@ -22,7 +22,7 @@ router.post(
 );
 router.put(
 	"/image/:orphanageID",
-	// ensureAuthentication,
+	ensureAuthentication,
 	multer(multerConfig).single("file")
 );
 router.post("/login", new AuthenticateUserController().handle);
